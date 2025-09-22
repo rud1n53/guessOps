@@ -48,7 +48,7 @@ for(let i = 5; i >= 0; i--){
 };
 
 
-//======================================================
+//====================================================== 여기서부터 입력 확인하는 부분
 
 const inputEl = document.getElementById("searchInput");
 
@@ -89,3 +89,25 @@ function warn(){
     document.getElementById("dupCheck").style.display = "block";
     setTimeout(() => document.getElementById("dupCheck").style.display = "none", 1000);
 }
+
+//================================================== 이미지 preload하기
+
+function preloadImages() {
+    const loaded = [];
+    for (let i = 0; i < memList.length; i++) {
+        memList[i].forEach(val => {
+            if (!val || !val[0] || val[0].length === 0) return;
+            val[0].forEach(name => {
+                // 파일명에서 공백 제거
+                const fileName = name.replace(/ /g, "");
+                const src = `./charimgs/${i+1}star/${fileName}.webp`;
+                const img = new Image();
+                img.src = src;
+                loaded.push(img);
+            });
+        });
+    }
+    console.log(`✅ ${loaded.length} images preloaded`);
+}
+// 페이지 로딩 완료 후 실행
+window.addEventListener("load", preloadImages);
