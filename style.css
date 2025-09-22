@@ -6,8 +6,7 @@
 }
 .container {
     display: grid;
-    min-width: 500px;
-    max-width: 80%;
+    max-width: 800px;
     grid-template-columns: 2fr 8fr;
     border: 2px solid rgb(105, 105, 105);
     border-radius: 5px;
