@@ -64,7 +64,7 @@ inputEl.addEventListener("beforeinput", (e) => {
                 scoreboard.style.color = "white";
             }
             e.preventDefault();
-            target.style.backgroundImage = `url("../img/${inputValue.replace(/ /g,"")}.webp")`;
+            target.style.backgroundImage = `url("../charimg/${inputValue.replace(/ /g,"")}.webp")`;
             //파일명에 띄어쓰기 없어서 정규식으로 공백 지워준거임 (replace)
             target.getElementsByClassName("nameTag")[0].style.display = "block";
             setTimeout(() => inputEl.value = "", 0);
