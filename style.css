@@ -1,0 +1,76 @@
+* {
+    font-family: "Noto Sans KR", sans-serif;
+}
+.wrap {
+    margin-top: 100px;
+}
+.container {
+    display: grid;
+    min-width: 400px;
+    max-width: 1000px;
+    grid-template-columns: 2fr 8fr;
+    border: 2px solid rgb(105, 105, 105);
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+.occName {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.occName img{
+    width: 50%;
+}
+.memList {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(20px,1fr));
+}
+.item {
+    aspect-ratio: 1 / 1;
+    border: 1px black dotted;
+    background-image: url('./default.png');
+    background-size: contain;
+}
+.nameTag {
+    display: inline-block;
+    margin: 0;
+    font-size: 70%;
+    padding: 3px;
+    color: white;
+    background-color: black;
+    opacity: 70%;
+    border-radius: 10%;
+    display: none;
+}
+.scoreboard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px black dotted;
+    background-color: rgb(235, 235, 235);
+    font-size: 1rem;
+    font-weight: 500;
+}
+body {
+    display: flex;
+    justify-content: center;
+}
+#searchInput {
+    top: 20px;
+    height: 50px;
+    width: 90%;
+    position: fixed;
+    z-index: 100;
+}
+#dupCheck {
+    position: fixed;
+    top: 50px;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: black;
+    opacity: 70%;
+    display: none;
+    z-index: 100;
+}
