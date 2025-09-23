@@ -69,6 +69,10 @@ inputEl.addEventListener("beforeinput", (e) => {
             }
             target.style.backgroundImage = `url("./charimgs/${target.dataset.star}/${inputValue.replace(/ /g,"")}.webp")`;
             //파일명에 띄어쓰기 없어서 정규식으로 공백 지워준거임 (replace)
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
             target.getElementsByClassName("nameTag")[0].style.display = "block";
             setTimeout(() => inputEl.value = "", 0);
             target.classList.add("check");
@@ -92,7 +96,8 @@ function warn(){
 
 //================================================== 이미지 preload하기
 
-function preloadImages() {
+// 페이지 로딩 완료 후 실행
+window.addEventListener("load", (e) =>{
     const loaded = [];
     for (let i = 0; i < memList.length; i++) {
         memList[i].forEach(val => {
@@ -108,6 +113,4 @@ function preloadImages() {
         });
     }
     console.log(`✅ ${loaded.length} images preloaded`);
-}
-// 페이지 로딩 완료 후 실행
-window.addEventListener("load", preloadImages);
+});
