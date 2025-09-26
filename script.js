@@ -15,14 +15,33 @@ let finCnt = 0;
 
 document.getElementsByTagName("form")[0].onsubmit = function(e){
     e.preventDefault();
-    let testTarget = [
+    let starTarget = [
         this.one.checked,this.two.checked,
         this.three.checked,this.four.checked,
         this.five.checked,this.six.checked
     ]
+    let posTarget = [
+        this.vanguard.checked,this.guard.checked,
+        this.defender.checked,this.sniper.checked,
+        this.supporter.checked,this.specialist.checked
+    ]
+
+
+    let starCheck = false;
+    let posCheck = false;
+    starTarget.forEach((val) => {
+        if(val) starCheck = true;
+    })
+    posTarget.forEach((val) => {
+        if(val) posCheck = true;
+    })
+    if(!starCheck || !posCheck){
+        warn2();
+        return;
+    }
 
     for(let i = 5; i >= 0; i--){
-        if(testTarget[i]){
+        if(starTarget[i]){
             memList[i].forEach((val) => {
                 if(!this[val[1]].checked) return;
                 if(!val || val[0].length == 0) return;
@@ -120,6 +139,10 @@ function warn(){
     setTimeout(() => document.getElementById("dupCheck").style.display = "none", 1000);
 }
 
+function warn2(){
+    document.getElementById("warn").style.display = "block";
+    setTimeout(() => document.getElementById("warn").style.display = "none", 1000);
+}
 //================================================== 이미지 preload하기
 
 // 페이지 로딩 완료 후 실행
