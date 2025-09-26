@@ -11,6 +11,8 @@ function createDiv(name, occ, i){
     target.appendChild(newDiv);
 };//캐릭터 칸 더하기
 
+let finCnt = 0;
+
 document.getElementsByTagName("form")[0].onsubmit = function(e){
     e.preventDefault();
     let testTarget = [
@@ -45,6 +47,7 @@ document.getElementsByTagName("form")[0].onsubmit = function(e){
                 newDiv.appendChild(newText2);
                 newDiv.appendChild(newText3);
                 target.appendChild(newDiv);
+                finCnt += 1;
 
                 val[0].forEach(function(name){
                     createDiv(name, val[1], i);
@@ -84,6 +87,11 @@ inputEl.addEventListener("beforeinput", (e) => {
             if(scoreNow.innerText == scoreWhole.innerText){
                 scoreboard.style.backgroundColor = "green";
                 scoreboard.style.color = "white";
+                finCnt -= 1;
+                if(finCnt == 0){
+                    console.log("finished!");
+                    frame();
+                }
             }
             target.style.backgroundImage = `url("./charimgs/${target.dataset.star}/${inputValue.replace(/ /g,"")}.webp")`;
             //파일명에 띄어쓰기 없어서 정규식으로 공백 지워준거임 (replace)
@@ -115,7 +123,7 @@ function warn(){
 //================================================== 이미지 preload하기
 
 // 페이지 로딩 완료 후 실행
-window.addEventListener("load", (e) =>{
+(function preloadImages() {
     const loaded = [];
     for (let i = 0; i < memList.length; i++) {
         memList[i].forEach(val => {
@@ -131,4 +139,46 @@ window.addEventListener("load", (e) =>{
         });
     }
     console.log(`✅ ${loaded.length} images preloaded`);
-});
+})();
+
+//==================================================== 컨페티 코드 긁어오기
+ //https://github.com/catdad/canvas-confetti?tab=readme-ov-file
+
+var count = 200;
+var defaults = {
+  origin: { y: 0.7 }
+};
+
+function fire(particleRatio, opts) {
+  confetti({
+    ...defaults,
+    ...opts,
+    particleCount: Math.floor(count * particleRatio),
+    colors: ['#ffe7db', '#162e5b', '#018577', '#8be3dc']
+  });
+}
+
+function frame(){
+    fire(0.25, {
+    spread: 26,
+    startVelocity: 55,
+    });
+    fire(0.2, {
+    spread: 60,
+    });
+    fire(0.35, {
+    spread: 100,
+    decay: 0.91,
+    scalar: 0.8
+    });
+    fire(0.1, {
+    spread: 120,
+    startVelocity: 25,
+    decay: 0.92,
+    scalar: 1.2
+    });
+    fire(0.1, {
+    spread: 120,
+    startVelocity: 45,
+    });
+}
