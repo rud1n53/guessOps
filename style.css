@@ -134,7 +134,7 @@ body {
         aspect-ratio: 12 / 1;
     }
     .container {
-        max-width: 90%;
+        max-width: 80%;
     }
 }
 @media (max-width: 1050px) and (min-width: 730px){
