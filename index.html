@@ -10,6 +10,57 @@
     <title>GuessOps</title>
 </head>
 <body>
+    <div id="overlay">
+        <form style="z-index: 5000;">
+            <h1>Guessops</h1>
+            <fieldset id="formStar">
+                <legend>star</legend>
+                <label><input type="checkbox" name="six" value="6star">★★★★★★</label><br>
+                <label><input type="checkbox" name="five" value="5star">★★★★★</label><br>
+                <label><input type="checkbox" name="four" value="4star">★★★★</label><br>
+                <label><input type="checkbox" name="three" value="3star">★★★</label><br>
+                <label><input type="checkbox" name="two" value="2star">★★</label><br>
+                <label><input type="checkbox" name="one" value="1star">★</label><br>
+            </fieldset>
+            <fieldset id="formPos">
+                <legend>position</legend>
+                <label for="vanguard">
+                    <input type="checkbox" name="vanguard" value="vanguard">
+                    <img src="./iconimg/vanguard.webp">
+                </label>
+                <label for="guard">
+                    <input type="checkbox" name="guard" value="guard">
+                    <img src="./iconimg/guard.webp">
+                </label><br>
+                <label for="defender">
+                    <input type="checkbox" name="defender" value="defender">
+                    <img src="./iconimg/defender.webp">
+                </label>
+                <label for="sniper">
+                    <input type="checkbox" name="sniper" value="sniper">
+                    <img src="./iconimg/sniper.webp">
+                </label><br>
+                <label for="caster">
+                    <input type="checkbox" name="caster" value="caster">
+                    <img src="./iconimg/caster.webp">
+                </label>
+                <label for="medic">
+                    <input type="checkbox" name="medic" value="medic">
+                    <img src="./iconimg/medic.webp">
+                </label><br>
+                <label for="supporter">
+                    <input type="checkbox" name="supporter" value="supporter">
+                    <img src="./iconimg/supporter.webp">
+                </label>
+                <label for="specialist">
+                    <input type="checkbox" name="specialist" value="specialist">
+                    <img src="./iconimg/specialist.webp">
+                </label>
+            </fieldset>
+            <button type="submit">GO!</button>
+        </form>
+    </div>
+    
     <input id="searchInput" placeholder="Guess your operator : ">
     <p id="dupCheck">이미 알아낸 오퍼레이터입니다!</p>
     <div class="wrap">

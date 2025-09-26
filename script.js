@@ -1,5 +1,3 @@
-let testTarget = [true,true,true,true,true,true]
-
 function createDiv(name, occ, i){
     const target = document.getElementById(occ);
     const newDiv = document.createElement('div');
@@ -13,39 +11,59 @@ function createDiv(name, occ, i){
     target.appendChild(newDiv);
 };//캐릭터 칸 더하기
 
-for(let i = 5; i >= 0; i--){
-    if(testTarget[i]){
-        memList[i].forEach(function(val){
-            if(!val || val[0].length == 0) return;
-            const target = document.getElementById(val[1]);
-            if(!target) return;
+document.getElementsByTagName("form")[0].onsubmit = function(e){
+    e.preventDefault();
+    let testTarget = [
+        this.one.checked,this.two.checked,
+        this.three.checked,this.four.checked,
+        this.five.checked,this.six.checked
+    ]
 
-            const newDiv = document.createElement('div');
-            const newText1 = document.createElement('p');
-            const newText2 = document.createElement('p');
-            const newText3 = document.createElement('p');
-            newDiv.innerText = `${"★".repeat(i+1)}    `;
-            newDiv.style.whiteSpace = "pre";
-            newDiv.classList.add("scoreboard");
-            newDiv.dataset.scoreboard = `${i+1}star`;
-            newText1.innerText = 0;
-            newText1.classList.add("curr");
-            newText2.innerText = ` / `;
-            newText2.style.whiteSpace = "pre";
-            newText3.innerText = `${val[0].length}`;
-            newText3.classList.add("whole");
-            newDiv.appendChild(newText1);
-            newDiv.appendChild(newText2);
-            newDiv.appendChild(newText3);
-            target.appendChild(newDiv);
+    for(let i = 5; i >= 0; i--){
+        if(testTarget[i]){
+            memList[i].forEach((val) => {
+                if(!this[val[1]].checked) return;
+                if(!val || val[0].length == 0) return;
+                const target = document.getElementById(val[1]);
+                if(!target) return;
 
-            val[0].forEach(function(name){
-                createDiv(name, val[1], i);
+                const newDiv = document.createElement('div');
+                const newText1 = document.createElement('p');
+                const newText2 = document.createElement('p');
+                const newText3 = document.createElement('p');
+                newDiv.innerText = `${"★".repeat(i+1)}    `;
+                newDiv.style.whiteSpace = "pre";
+                newDiv.classList.add("scoreboard");
+                newDiv.dataset.scoreboard = `${i+1}star`;
+                newText1.innerText = 0;
+                newText1.classList.add("curr");
+                newText2.innerText = ` / `;
+                newText2.style.whiteSpace = "pre";
+                newText3.innerText = `${val[0].length}`;
+                newText3.classList.add("whole");
+                newDiv.appendChild(newText1);
+                newDiv.appendChild(newText2);
+                newDiv.appendChild(newText3);
+                target.appendChild(newDiv);
+
+                val[0].forEach(function(name){
+                    createDiv(name, val[1], i);
+                });
+
             });
+        }
+    }; //선택한 오퍼들 추가하기
 
-        });
-    }
-};
+    document.querySelectorAll(".container").forEach((val) => {
+        if (val.querySelectorAll(".scoreboard").length === 0) {
+            val.remove();
+        }
+    }); // 비어있는 직군들 지우기
+
+    let form = document.getElementById("overlay");
+    form.style.display = "none";
+
+}
 
 
 //====================================================== 여기서부터 입력 확인하는 부분
