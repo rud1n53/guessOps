@@ -224,13 +224,19 @@ function timerStart(){
 
 function timerStop(){
     clearInterval(timeCnt);
+    return temp;
 }
 
 //=================================================== 끝내기
 function finished(){
     console.log("finished!");
+    let finTime = timerStop();
+    let overlay2 = document.getElementById("overlay2");
+    let finishBox = document.getElementById("finish");
+    let timeText = finishBox.getElementsByTagName("h2")[0];
+    timeText.innerText = finTime;
+    overlay2.style.display = 'block';
     frame();
-    timerStop();
 }
 //==================================================== 컨페티 코드 긁어오기
  //https://github.com/catdad/canvas-confetti?tab=readme-ov-file

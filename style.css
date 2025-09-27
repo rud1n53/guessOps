@@ -1,4 +1,4 @@
-#overlay {
+.overlay {
   position: fixed;       /* 화면 전체 덮기 */
   top: 0;
   left: 0;
@@ -82,6 +82,35 @@ fieldset img {
     margin: auto;
 }
 /*======================================= 여기까지 타이머*/
+#finish {
+    position: fixed;
+    width: 250px;
+    aspect-ratio: 1 / 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 500;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 80vh;
+    -ms-overflow-style: none;
+}
+#finish img {
+    width: 100%;
+}
+#overlay2 {
+    display: none;
+}
+/*======================================= 끝났을 때 띄우는 창*/
 body {
     display: flex;
     justify-content: center;
