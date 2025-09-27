@@ -61,5 +61,5 @@ let memList =
         [[memVan5, "vanguard"], [memGuard5, "guard"], [memDefend5, "defender"], [memSnipe5, "sniper"], [memCast5, "caster"], [memMedic5, "medic"], [memSupp5, "supporter"], [memSpecial5, "specialist"]],
         [[memVan6, "vanguard"], [memGuard6, "guard"], [memDefend6, "defender"], [memSnipe6, "sniper"], [memCast6, "caster"], [memMedic6, "medic"], [memSupp6, "supporter"], [memSpecial6, "specialist"]]
     ]
-
+let memKor = ["뱅가드", "가드", "디펜더", "스나이퍼", "캐스터", "메딕", "서포터", "스페셜리스트"]
 //=================================================

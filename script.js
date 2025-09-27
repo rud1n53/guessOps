@@ -26,24 +26,49 @@ document.getElementsByTagName("form")[0].onsubmit = function(e){ //폼 제출받
     let posTarget = [
         this.vanguard.checked,this.guard.checked,
         this.defender.checked,this.sniper.checked,
+        this.caster.checked,this.medic.checked,
         this.supporter.checked,this.specialist.checked
     ]
-    let cho = false;
-    if(this.chosung.checked) cho = true;
 
-
+    const selectStar = document.getElementById("selectStar");
+    const selectPos = document.getElementById("selectPos");
+    const finOption = document.getElementById("finOption");
     let starCheck = false;
     let posCheck = false;
+    let cho = false;
+    if(this.chosung.checked){
+        let newText = document.createElement('em');
+        newText.innerText = "* 초성힌트를 사용했습니다.";
+        newText.id = "choOption";
+        finOption.appendChild(newText);
+        cho = true;
+    }
+
+
+    let i = 0;
     starTarget.forEach((val) => {
-        if(val) starCheck = true;
+        if(val){
+            starCheck = true;
+            let newText = document.createElement('li');
+            newText.innerText = `${"★".repeat(i+1)}`;
+            selectStar.appendChild(newText);
+        }
+        i++;
     })
+    i = 0;
     posTarget.forEach((val) => {
-        if(val) posCheck = true;
+        if(val){
+            posCheck = true;
+            let newText = document.createElement('li');
+            newText.innerText = memKor[i];
+            selectPos.appendChild(newText);
+        }
+        i++;
     })
     if(!starCheck || !posCheck){
         warn2();
         return;
-    }
+    }// 폼에서 뭐 선택했는지 확인하는 절차
 
     for(let i = 5; i >= 0; i--){
         if(starTarget[i]){
