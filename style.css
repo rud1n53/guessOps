@@ -242,7 +242,7 @@ body {
     }
     .box {
         height: 90vh;
-        aspect-ratio: 1 / 2.2;
+        width: 85vw;
     }
 }
 @media (max-width: 1050px) and (min-width: 730px){
