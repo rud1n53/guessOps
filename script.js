@@ -94,7 +94,7 @@ document.getElementsByTagName("form")[0].onsubmit = function(e){ //폼 제출받
     let wrap = document.getElementsByClassName("wrap")[0];
     wrap.style.display = "block";
     setTimeout(() => backGround2.style.display = "none", 1000);
-
+    timerStart();
 }
 
 
@@ -105,9 +105,9 @@ const inputEl = document.getElementById("searchInput");
 inputEl.addEventListener("beforeinput", (e) => {
     const inputValue = inputEl.value;
     const target = document.querySelector(`div[data-name='${inputValue}']`);
-    const nameTag = target.getElementsByClassName("nameTag")[0];
 
     if(target){
+        const nameTag = target.getElementsByClassName("nameTag")[0];
         if (!target.classList.contains("check")){
             const occ = target.parentElement;
             const scoreboard = occ.querySelector(`[data-scoreboard="${target.dataset.star}"]`);
@@ -118,10 +118,7 @@ inputEl.addEventListener("beforeinput", (e) => {
                 scoreboard.style.backgroundColor = "green";
                 scoreboard.style.color = "white";
                 finCnt -= 1;
-                if(finCnt == 0){
-                    console.log("finished!");
-                    frame();
-                }
+                if(finCnt == 0) finished();
             }
             nameTag.innerText = inputValue;
             target.style.opacity = '100%';
@@ -204,6 +201,37 @@ function shatterer(word){
     return Chosung[ChoNum];
 }
 
+//=================================================== 타이머 관련
+let curTime = 0;
+let timer = document.getElementById("timer");
+let timerText = timer.getElementsByTagName("p")[0];
+let h, m, s;
+let temp = '';
+
+function timerStart(){
+    timeCnt = setInterval(() => {
+        curTime += 1;
+        h = Math.floor(curTime / (60 * 60));
+        m = Math.floor((curTime % (60 * 60)) / 60);
+        s = Math.floor(curTime % 60);
+        if(h/10 < 1) h = "0" + h;
+        if(m/10 < 1) m = "0" + m;
+        if(s/10 < 1) s = "0" + s;
+        temp = String(h) + " : " + String(m) + " : " + String(s);
+        timerText.innerHTML = temp;
+    }, 1000)
+}
+
+function timerStop(){
+    clearInterval(timeCnt);
+}
+
+//=================================================== 끝내기
+function finished(){
+    console.log("finished!");
+    frame();
+    timerStop();
+}
 //==================================================== 컨페티 코드 긁어오기
  //https://github.com/catdad/canvas-confetti?tab=readme-ov-file
 

@@ -10,7 +10,7 @@
 form {
     position: fixed;
     width: 250px;
-    aspect-ratio: 1 / 2.1;
+    aspect-ratio: 1 / 2.2;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -33,6 +33,7 @@ form::-webkit-scrollbar {
 }
 form h1 {
     margin-top: 0.5rem;
+    margin-bottom: 0;
     font-family: "Jersey 10", sans-serif;
     font-weight: 200;
     font-size: 2.8rem;
@@ -60,6 +61,34 @@ fieldset img {
 }
 #formStar {
     text-align: left;
+}
+/*======================================= 위에까지 폼*/
+#timer {
+    position: fixed;
+    width: 9rem;
+    height: 3rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    left: 1rem;
+    bottom: 1rem;
+    border-radius: 0.5rem;
+    font-size: 2rem;
+    font-family: "Jersey 10", sans-serif;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+#timer p {
+    margin: auto;
+}
+/*======================================= 여기까지 타이머*/
+body {
+    display: flex;
+    justify-content: center;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none
 }
 .wrap {
     width: 100vw;
@@ -126,13 +155,6 @@ fieldset img {
     background-color: rgb(235, 235, 235);
     font-weight: 500;
     font-family: "Jersey 10", sans-serif;
-}
-body {
-    display: flex;
-    justify-content: center;
-}
-h1 {
-    margin-bottom: 0;
 }
 #searchInput {
     top: 20px;
