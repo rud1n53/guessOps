@@ -240,6 +240,10 @@ body {
     .container {
         max-width: 90%;
     }
+    .box {
+        height: 90vh;
+        aspect-ratio: 1 / 2.2;
+    }
 }
 @media (max-width: 1050px) and (min-width: 730px){
     .memList {
