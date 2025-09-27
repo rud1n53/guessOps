@@ -1,6 +1,5 @@
 * {
     font-family: "Noto Sans KR", sans-serif;
-    transition-duration: 200ms;
 }
 #overlay {
   position: fixed;       /* 화면 전체 덮기 */
@@ -49,15 +48,19 @@ fieldset img {
     text-align: left;
 }
 .wrap {
-    width: 100%;
+    width: 100vw;
     margin-top: 100px;
+    height: 90%;
+    overflow-y: auto;
+    z-index: 1;
+    display: none;
 }
 .container {
     display: grid;
     max-width: 70%;
     margin: auto;
     grid-template-columns: 2fr 8fr;
-    border: 2px solid rgb(105, 105, 105);
+    background-color: aliceblue;
     border-radius: 2px;
     margin-bottom: 5px;
 }
@@ -76,9 +79,12 @@ fieldset img {
 }
 .item {
     aspect-ratio: 1 / 1;
-    background-image: url('./default.png');
-    background-size: contain;
-    transition-duration: 300ms;
+    background-image: url('./default.webp');
+    background-repeat: no-repeat;
+    background-size: 75%;
+    background-position: center;
+    opacity: 50%;
+    transition-duration: 200ms;
 }
 .nameTag {
     box-sizing: border-box;
@@ -99,7 +105,7 @@ fieldset img {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px black dotted;
+    border-bottom: 1px black dotted;
     background-color: rgb(235, 235, 235);
     font-size: 1rem;
     font-weight: 500;
@@ -116,7 +122,27 @@ h1 {
     height: 50px;
     width: 90%;
     position: fixed;
-    z-index: 100;
+    z-index: 2;
+    padding-left: 1em;
+}
+#background {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-image: url('./background.png');
+    background-size: cover;
+    z-index: 0;
+}
+#background2 {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-image: url('./background2.png');
+    background-size: cover;
+    z-index: 3;
+    transition: opacity 1s ease;
 }
 .notice {
     position: fixed;
@@ -144,7 +170,7 @@ h1 {
         aspect-ratio: 12 / 1;
     }
     .container {
-        max-width: 80%;
+        max-width: 90%;
     }
 }
 @media (max-width: 1050px) and (min-width: 730px){

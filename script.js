@@ -13,7 +13,7 @@ function createDiv(name, occ, i){
 
 let finCnt = 0;
 
-document.getElementsByTagName("form")[0].onsubmit = function(e){
+document.getElementsByTagName("form")[0].onsubmit = function(e){ //폼 제출받고나서 실행
     e.preventDefault();
     let starTarget = [
         this.one.checked,this.two.checked,
@@ -84,6 +84,11 @@ document.getElementsByTagName("form")[0].onsubmit = function(e){
 
     let form = document.getElementById("overlay");
     form.style.display = "none";
+    let backGround2 = document.getElementById("background2");
+    backGround2.style.opacity = "0%";
+    let wrap = document.getElementsByClassName("wrap")[0];
+    wrap.style.display = "block";
+    setTimeout(() => backGround2.style.display = "none", 1000);
 
 }
 
@@ -112,6 +117,8 @@ inputEl.addEventListener("beforeinput", (e) => {
                     frame();
                 }
             }
+            target.style.opacity = '100%';
+            target.style.backgroundSize = '100%'
             target.style.backgroundImage = `url("./charimgs/${target.dataset.star}/${inputValue.replace(/ /g,"")}.webp")`;
             //파일명에 띄어쓰기 없어서 정규식으로 공백 지워준거임 (replace)
             target.scrollIntoView({
@@ -134,12 +141,12 @@ inputEl.addEventListener("beforeinput", (e) => {
     }
 });
 
-function warn(){
+function warn(){//이미 맞춘 오퍼레이터임
     document.getElementById("dupCheck").style.display = "block";
     setTimeout(() => document.getElementById("dupCheck").style.display = "none", 1000);
 }
 
-function warn2(){
+function warn2(){//폼 선택 개수 부족함
     document.getElementById("warn").style.display = "block";
     setTimeout(() => document.getElementById("warn").style.display = "none", 1000);
 }
