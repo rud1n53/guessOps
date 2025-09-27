@@ -1,13 +1,16 @@
-function createDiv(name, occ, i){
+function createDiv(name, occ, i, cho){
     const target = document.getElementById(occ);
     const newDiv = document.createElement('div');
     const newText = document.createElement('div');
-    newText.innerText = name;
+    newText.innerText = separater(name);
     newText.classList.add("nameTag");
     newDiv.appendChild(newText);
     newDiv.classList.add("item");
     newDiv.dataset.star = `${i+1}star`;
     newDiv.dataset.name = name;
+    if(cho){
+        newText.style.display = 'block';
+    }
     target.appendChild(newDiv);
 };//캐릭터 칸 더하기
 
@@ -25,6 +28,8 @@ document.getElementsByTagName("form")[0].onsubmit = function(e){ //폼 제출받
         this.defender.checked,this.sniper.checked,
         this.supporter.checked,this.specialist.checked
     ]
+    let cho = false;
+    if(this.chosung.checked) cho = true;
 
 
     let starCheck = false;
@@ -69,7 +74,7 @@ document.getElementsByTagName("form")[0].onsubmit = function(e){ //폼 제출받
                 finCnt += 1;
 
                 val[0].forEach(function(name){
-                    createDiv(name, val[1], i);
+                    createDiv(name, val[1], i, cho);
                 });
 
             });
@@ -100,6 +105,7 @@ const inputEl = document.getElementById("searchInput");
 inputEl.addEventListener("beforeinput", (e) => {
     const inputValue = inputEl.value;
     const target = document.querySelector(`div[data-name='${inputValue}']`);
+    const nameTag = target.getElementsByClassName("nameTag")[0];
 
     if(target){
         if (!target.classList.contains("check")){
@@ -117,6 +123,7 @@ inputEl.addEventListener("beforeinput", (e) => {
                     frame();
                 }
             }
+            nameTag.innerText = inputValue;
             target.style.opacity = '100%';
             target.style.backgroundSize = '100%'
             target.style.backgroundImage = `url("./charimgs/${target.dataset.star}/${inputValue.replace(/ /g,"")}.webp")`;
@@ -170,6 +177,32 @@ function warn2(){//폼 선택 개수 부족함
     }
     console.log(`✅ ${loaded.length} images preloaded`);
 })();
+
+//=================================================== 초성 관련
+
+const Chosung = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ"
+const Jungsung = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ"
+const Jongsung = " ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ"
+let ChoNum;
+let ChoLen = Chosung.length;
+let JungLen = Jungsung.length;
+let JongLen = Jongsung.length;
+
+function separater(name){
+    let cho = '';
+    for(i = 0; i < name.length; i++){
+        cho += shatterer(name[i]);
+    }
+    return(cho);
+}
+
+function shatterer(word){
+    if(word == ' ') return word;
+    if(!(44032 <= word.charCodeAt(0)) && 55203 >= word.charCodeAt(0)) return '-';
+    diff = `${word}`.charCodeAt(0).toString(10) - '가'.charCodeAt(0).toString(10);
+    ChoNum = Math.floor((Math.floor(diff / JongLen)) / JungLen);
+    return Chosung[ChoNum];
+}
 
 //==================================================== 컨페티 코드 긁어오기
  //https://github.com/catdad/canvas-confetti?tab=readme-ov-file

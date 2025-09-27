@@ -23,6 +23,7 @@ form {
     align-items: center;
     text-align: center;
     font-family: "Noto Sans KR", sans-serif;
+    font-weight: 500;
     overflow-y: auto;
     max-height: 80vh;
 }
@@ -34,6 +35,7 @@ form h1 {
 }
 form legend {
     visibility: hidden;
+    height: 0;
 }
 form button {
     font-size: 1rem;
@@ -43,6 +45,7 @@ form button {
 fieldset {
     padding: 0;
     border: 0;
+    margin-bottom: 0.5em;
 }
 fieldset img {
     width: 15%;
